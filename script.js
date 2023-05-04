@@ -23,7 +23,26 @@ $(function () {
     });
   }
 
+  // Function to refresh color based on current time
+  function refreshColor() {
+    $('.time-block').each(function() {
+      const blockHour = parseInt(this.id);
+      if (blockHour == currentHour) {
+        $(this).removeClass('past future').addClass('present');
+      } else if (blockHour < currentHour) {
+        $(this).removeClass('future present').addClass('past');
+      } else {
+        $(this).removeClass('past present').addClass('future');
+      }
+    });
+  }
 
+  // Function to get user input from localStorage and set values for the block time
+  $('.time-block').each(function() {
+    const key = $(this).attr('id');
+    const value = localStorage.getItem(key);
+    $(this).children('.description').val(value);
+  });
 
 
 
