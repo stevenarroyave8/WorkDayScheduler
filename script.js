@@ -2,7 +2,7 @@ const localeSettings = {};
 dayjs.locale(localeSettings);
 // Wait until the DOM is fully loaded before executing the code inside the function.
 $(function () {
-  // Get the current hour of the day using the dayjs library.
+  // Get the current hour of the day 
   const currentHour = dayjs().format('H');
 // The function below changes the color of each time block based on whether it's in the "past, present, or future" relative to the current hour.
   function hourlyColor() {
@@ -14,6 +14,14 @@ $(function () {
     });
   }
 
+  // Function to save the users input to localStorage
+  function textEntry() {
+    $('.saveBtn').on('click', function() {
+      const key = $(this).parent().attr('id');
+      const value = $(this).siblings('.description').val();
+      localStorage.setItem(key, value);
+    });
+  }
 
 
 
